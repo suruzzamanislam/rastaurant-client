@@ -48,13 +48,13 @@ const Menu = () => {
           <Hamburger toggled={isOpen} toggle={setOpen} />
         </div>
         <div className="flex gap-x-6 items-center">
-          <ul className="md:flex hidden  items-center gap-x-3 lg:gap-x-5 lg:text-xl font-medium">
+          <ul className="md:flex hidden  items-center gap-x-3 lg:gap-x-5  font-medium">
             {menuItem}
           </ul>
           <NavLink to="/cart">
             <BsCartFill className="text-2xl"></BsCartFill>
           </NavLink>
-          <button className="md:text-2xl font-medium">Sign In</button>
+          <button className="md:text-xl font-medium">Sign In</button>
           <img className="rounded-full w-12 h-12" src={user} alt="" />
         </div>
         {/* mobile menu */}
