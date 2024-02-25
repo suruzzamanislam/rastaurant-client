@@ -1,8 +1,8 @@
-import './styles.css';
+import './bistro.css';
 
 const BistroBoss = () => {
   return (
-    <div className="box flex justify-center items-center my-10 md:my-20 py-8 md:py-28">
+    <div className="bistro flex justify-center items-center my-10 md:my-20 py-8 md:py-28">
       <div className="bg-black opacity-80 text-white max-w-5xl mx-auto p-3 md:p-10 text-center space-y-5 rounded-md shadow-md">
         <h1 className="text-4xl font-mono">Bistro Boss</h1>
         <p className="text-xl font-serif">

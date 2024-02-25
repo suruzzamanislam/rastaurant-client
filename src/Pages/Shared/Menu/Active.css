@@ -3,3 +3,6 @@
   border-bottom: 2px solid orangered;
   padding-bottom: 5px;
 }
+a:hover {
+  color: orangered;
+}

@@ -31,7 +31,11 @@ const Testimonial = () => {
           <SwiperSlide key={review._id}>
             <div className="text-center md:px-32">
               <div className="flex justify-center">
-                <FaArtstation className="text-center text-8xl"></FaArtstation>
+                <FaArtstation
+                  className={`text-center text-8xl ${
+                    review.rating === 5 && 'text-green-600'
+                  } ${review.rating === 4 && 'text-yellow-600'}`}
+                ></FaArtstation>
               </div>
               <div className="flex justify-center py-4">
                 <Rating

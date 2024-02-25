@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
-import MenuCard from './MenuCard';
+import MenuCard from '../../../Components/MenuItem/MenuCard';
+import useMenu from '../../../hooks/useMenu';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
-  const [menus, setMenus] = useState([]);
-  useEffect(() => {
-    fetch('menu.json')
-      .then(res => res.json())
-      .then(data => setMenus(data));
-  }, []);
+  const [menus] = useMenu();
   return (
     <div className="my-12">
       <SectionTitle
@@ -22,9 +18,11 @@ const Menu = () => {
         ))}
       </div>
       <div className="text-center mt-5">
-        <button className="btn btn-outline uppercase text-xl btn-secondary border-0 border-b-4">
-          View Full Menu
-        </button>
+        <Link to="/ourmenu">
+          <button className="btn btn-outline uppercase text-xl btn-secondary border-0 border-b-4">
+            View Full Menu
+          </button>
+        </Link>
       </div>
     </div>
   );

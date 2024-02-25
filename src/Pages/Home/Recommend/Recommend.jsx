@@ -1,14 +1,9 @@
-import { useEffect, useState } from 'react';
 import RecommendCard from './RecommendCard';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
+import useMenu from '../../../hooks/useMenu';
 
 const Recommend = () => {
-  const [menus, setMenus] = useState([]);
-  useEffect(() => {
-    fetch('menu.json')
-      .then(res => res.json())
-      .then(data => setMenus(data));
-  }, []);
+  const [menus] = useMenu();
   return (
     <div className="mt-10 md:mt-20 px-2">
       <SectionTitle

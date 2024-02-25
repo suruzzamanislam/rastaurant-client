@@ -7,22 +7,35 @@ import './Active.css';
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
+  const handleMenuItemClick = () => {
+    setOpen(false);
+  };
   const menuItem = (
     <>
       <li>
-        <NavLink to="/">HOME</NavLink>
+        <NavLink onClick={handleMenuItemClick} to="/">
+          HOME
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/contact">CONTACT US</NavLink>
+        <NavLink onClick={handleMenuItemClick} to="/contact">
+          CONTACT US
+        </NavLink>
       </li>
       <li>
-        <NavLink to="dasboard">DASBOARD</NavLink>
+        <NavLink onClick={handleMenuItemClick} to="/dasboard">
+          DASBOARD
+        </NavLink>
       </li>
       <li>
-        <NavLink to="menu">MENU</NavLink>
+        <NavLink onClick={handleMenuItemClick} to="/ourmenu">
+          OUR MENU
+        </NavLink>
       </li>
       <li>
-        <NavLink to="shop">SHOP</NavLink>
+        <NavLink onClick={handleMenuItemClick} to="/shop">
+          SHOP
+        </NavLink>
       </li>
     </>
   );

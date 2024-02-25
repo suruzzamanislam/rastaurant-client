@@ -1,4 +1,4 @@
-import './style.css';
+import './featured.css';
 import img from '../../../assets/home/featured.jpg';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 const Features = () => {
