@@ -67,7 +67,10 @@ const Menu = () => {
           <NavLink to="/cart">
             <BsCartFill className="text-2xl"></BsCartFill>
           </NavLink>
-          <button className="md:text-xl font-medium">Sign In</button>
+          <NavLink to={'/login'}>
+            {' '}
+            <button className="md:text-xl font-medium">Sign In</button>
+          </NavLink>
           <img className="rounded-full w-12 h-12" src={user} alt="" />
         </div>
         {/* mobile menu */}
