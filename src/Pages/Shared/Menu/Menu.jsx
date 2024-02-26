@@ -33,8 +33,8 @@ const Menu = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink onClick={handleMenuItemClick} to="/shop">
-          SHOP
+        <NavLink onClick={handleMenuItemClick} to="/order/DESSERTS">
+          ORDER
         </NavLink>
       </li>
     </>

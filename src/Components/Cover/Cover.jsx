@@ -29,6 +29,6 @@ const Cover = ({ img, title }) => {
 
 export default Cover;
 Cover.propTypes = {
-  img: PropTypes.img,
+  img: PropTypes.string,
   title: PropTypes.string,
 };

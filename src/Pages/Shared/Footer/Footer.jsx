@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="w-1/2 flex flex-col items-center text-center justify-center bg-[#1F2937]  py-8">
           <h1 className="text-xl font-medium mb-2">CONTACT US</h1>
           <address className="">
-            123 ABS Street, Uni 21, Bangladesh <br />
-            +88 123456789 <br /> Mon - Fri: 08:00 - 22:00 <br /> Sat - Sun:
+            Kaligonj, Lalmonirhat, Bangladesh <br />
+            +88 01880992236 <br /> Mon - Fri: 08:00 - 22:00 <br /> Sat - Sun:
             10:00 - 23:00
           </address>
         </div>

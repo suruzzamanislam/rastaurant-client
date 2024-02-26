@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import Footer from '../../Shared/Footer/Footer';
 import Banner from '../Banner/Banner';
 import BistroBoss from '../BistroBoss/BistroBoss';

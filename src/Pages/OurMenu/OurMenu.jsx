@@ -10,7 +10,7 @@ import saladImg from '../../assets/menu/salad-bg.jpg';
 import useMenu from '../../hooks/useMenu';
 import OurMenuCard from './OurMenuCard';
 import Footer from '../Shared/Footer/Footer';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const OurMenu = () => {
   const [menus] = useMenu();
@@ -35,42 +35,42 @@ const OurMenu = () => {
         ></SectionTitle>
       </div>
       {/* offereds section */}
-      <OurMenuCard item={offereds}></OurMenuCard>
+      <OurMenuCard bannerImg={''} item={offereds}></OurMenuCard>
       {/* pizzas */}
       <OurMenuCard
         item={pizzas}
         bannerImg={pizzaImg}
-        title="PIZZA"
+        title="PIZZAS"
       ></OurMenuCard>
       {/* popular */}
       <OurMenuCard
         item={populars}
         bannerImg={popularImg}
-        title="Popular"
+        title="POPULARS"
       ></OurMenuCard>
       {/* dessert */}
       <OurMenuCard
         item={desserts}
         bannerImg={dessertImg}
-        title="Dessert"
+        title="DESSERTS"
       ></OurMenuCard>
       {/* dirnk */}
       <OurMenuCard
         item={drinks}
         bannerImg={drinkImg}
-        title="drink"
+        title="DIRNKS"
       ></OurMenuCard>
       {/* salad */}
       <OurMenuCard
         item={salads}
         bannerImg={saladImg}
-        title="salad"
+        title="SALADS"
       ></OurMenuCard>
       {/* soup */}
       <OurMenuCard
         item={soups}
         bannerImg={popularImg}
-        title="Soup"
+        title="SOUPS"
       ></OurMenuCard>
       <Footer></Footer>
     </div>

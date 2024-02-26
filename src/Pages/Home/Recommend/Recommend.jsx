@@ -1,4 +1,4 @@
-import RecommendCard from './RecommendCard';
+import RecommendCard from '../../../Components/MenuCard/RecommendCard';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import useMenu from '../../../hooks/useMenu';
 
