@@ -5,16 +5,13 @@ import { Divide as Hamburger } from 'hamburger-react';
 import { useContext, useState } from 'react';
 import './Active.css';
 import { authContext } from '../../../providers/AuthProvider';
-import useAxiousSecure from '../../../hooks/useAxiousSecure';
+import useCart from '../../../hooks/useCart';
 
 const Menu = () => {
   const { user, LogOutUser } = useContext(authContext);
-  const [cart, setCart] = useState([]);
-  const axiousSecure = useAxiousSecure();
-  axiousSecure.get(`/carts?email=${user?.email}`).then(res => {
-    setCart(res.data);
-  });
+  const [cart, setCart] = useCart();
   const [isOpen, setOpen] = useState(false);
+  console.log(cart.length);
 
   const handleLogOut = () => {
     LogOutUser()
