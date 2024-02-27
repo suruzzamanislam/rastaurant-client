@@ -1,12 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import { BsCartFill } from 'react-icons/bs';
-import user from '../../../assets/user.png';
+import userImg from '../../../assets/user.png';
 import { Divide as Hamburger } from 'hamburger-react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Active.css';
+import { authContext } from '../../../providers/AuthProvider';
 
 const Menu = () => {
   const [isOpen, setOpen] = useState(false);
+  const { user, LogOutUser } = useContext(authContext);
+  const handleLogOut = () => {
+    LogOutUser()
+      .then(() => {})
+      .catch(error => console.log(error));
+  };
   const handleMenuItemClick = () => {
     setOpen(false);
   };
@@ -67,11 +74,25 @@ const Menu = () => {
           <NavLink to="/cart">
             <BsCartFill className="text-2xl"></BsCartFill>
           </NavLink>
-          <NavLink to={'/login'}>
-            {' '}
-            <button className="md:text-xl font-medium">Sign In</button>
-          </NavLink>
-          <img className="rounded-full w-12 h-12" src={user} alt="" />
+
+          {user ? (
+            <>
+              <button
+                onClick={handleLogOut}
+                className="md:text-xl font-medium hover:text-red-400"
+              >
+                Log Out
+              </button>
+              <img className="rounded-full w-12 h-12" src={userImg} alt="" />
+            </>
+          ) : (
+            <>
+              <NavLink to={'/login'}>
+                {' '}
+                <button className="md:text-xl font-medium">Sign In</button>
+              </NavLink>
+            </>
+          )}
         </div>
         {/* mobile menu */}
         <div

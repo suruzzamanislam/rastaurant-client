@@ -1,57 +1,69 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import img from '../../assets/others/authentication.gif';
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from 'react-simple-captcha';
-import { FaGoogle, FaFacebook, FaGithub } from 'react-icons/fa';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
+import img from '../../assets/others/authentication2.png';
+import { useContext, useState } from 'react';
 import { authContext } from '../../providers/AuthProvider';
+import { updateProfile } from 'firebase/auth';
+import auth from '../../firebase/firebase.config';
+import Swal from 'sweetalert2';
 
-const Login = () => {
+const SignUp = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const captchaRef = useRef();
-  const { LoginUser } = useContext(authContext);
   const [error, setError] = useState(null);
-
-  const [captcha, setCaptcha] = useState('');
-  const handleLogin = () => {
+  const { createUser } = useContext(authContext);
+  const handleSubmit = () => {
     event.preventDefault();
-    if (validateCaptcha(captchaRef.current.value)) {
-      setCaptcha('');
-    } else {
-      setCaptcha('wrong captcha! plese enter right captcha');
-      return;
-    }
     const form = event.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
     setError('');
-    LoginUser(email, password)
+    createUser(email, password)
       .then(result => {
-        console.log(result.user);
-        navigate(location?.state ? location.state : '/');
+        if (result.user) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Sign Up Success',
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
+          .then(() => {})
+          .catch(error => {
+            console.log(error);
+          });
+        setTimeout(() => {
+          navigate('/');
+        }, 1000);
       })
       .catch(error => {
+        console.log(error);
         setError(error.message);
       });
   };
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
   return (
     <div className="flex flex-col md:flex-row pt-24 items-center max-w-7xl mx-auto p-2">
-      <div className="">
-        <img className="w-full" src={img} alt="" />
-      </div>
       <form
-        onSubmit={handleLogin}
-        className="md:px-14 px-4 py-10 md:w-1/2 w-full border border-accent shadow-md shadow-accent rounded-md space-y-4"
+        onSubmit={handleSubmit}
+        className="md:px-14 px-4 py-10 md:w-1/2 w-full border border-info shadow-md shadow-info rounded-md space-y-4"
       >
-        <h1 className="text-center font-medium text-3xl">Login</h1>
+        <h1 className="text-center font-medium text-3xl">Sign Up</h1>
+        <div>
+          <label className="block text-xl font-medium pb-1" htmlFor="name">
+            Name
+          </label>
+          <input
+            className="input input-bordered input-info w-full  focus:outline-0"
+            type="name"
+            name="name"
+            id="name"
+            placeholder="Name"
+          />
+        </div>
         <div>
           <label className="block text-xl font-medium pb-1" htmlFor="email">
             Email
@@ -77,18 +89,6 @@ const Login = () => {
           />
         </div>
 
-        <div className="space-y-3">
-          <div>
-            <LoadCanvasTemplate />
-          </div>
-          <input
-            className="input input-bordered input-info w-full  focus:outline-0"
-            type="text"
-            ref={captchaRef}
-            placeholder="Enter Code"
-          />{' '}
-          <p className="text-red-500">{captcha}</p>
-        </div>
         <div>
           <input
             className="btn btn-block btn-success font-semibold "
@@ -111,15 +111,18 @@ const Login = () => {
           </div>
         </div>
         <p className="text-center mt-3 font-medium">
-          Do not have accout?{' '}
-          <Link to="/signup" className="text-blue-600 font-semibold underline">
-            Sign Up
+          All Ready Have An Account?{' '}
+          <Link to="/login" className="text-blue-600 font-semibold underline">
+            Log In
           </Link>
         </p>
-        {error && <p className="text-red-500 text-center">{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
       </form>
+      <div className="md:w-1/2">
+        <img className="w-full" src={img} alt="" />
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
