@@ -9,6 +9,7 @@ import Footer from '../Shared/Footer/Footer';
 import './tab.css';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import loadingImg from '../../../public/loading.gif';
 const Order = () => {
   const categories = [
     'DESSERTS',
@@ -23,7 +24,7 @@ const Order = () => {
   const indexTabs = categories.indexOf(category);
   const [orderIndex, setOrderIndex] = useState(indexTabs);
 
-  const [menus] = useMenu();
+  const [menus, loading] = useMenu();
   const desserts = menus.filter(menu => menu.category === 'dessert');
   const salads = menus.filter(menu => menu.category === 'salad');
   const populars = menus.filter(menu => menu.category === 'popular');
@@ -47,6 +48,11 @@ const Order = () => {
           <Tab>OFFEREDS</Tab>
           <Tab>POPULARS</Tab>
         </TabList>
+        {loading && (
+          <div className="flex justify-center items-center">
+            <img src={loadingImg} className="w-48 h-48" />
+          </div>
+        )}
         <TabPanel>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-7 md:py-16 max-w-7xl mx-auto gap-10">
             {desserts.map(menu => (

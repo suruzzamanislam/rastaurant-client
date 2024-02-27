@@ -58,7 +58,7 @@ const OurMenu = () => {
       <OurMenuCard
         item={drinks}
         bannerImg={drinkImg}
-        title="DIRNKS"
+        title="DRINKS"
       ></OurMenuCard>
       {/* salad */}
       <OurMenuCard

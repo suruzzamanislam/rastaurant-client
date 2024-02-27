@@ -5,13 +5,22 @@ import { Divide as Hamburger } from 'hamburger-react';
 import { useContext, useState } from 'react';
 import './Active.css';
 import { authContext } from '../../../providers/AuthProvider';
+import useAxiousSecure from '../../../hooks/useAxiousSecure';
 
 const Menu = () => {
-  const [isOpen, setOpen] = useState(false);
   const { user, LogOutUser } = useContext(authContext);
+  const [cart, setCart] = useState([]);
+  const axiousSecure = useAxiousSecure();
+  axiousSecure.get(`/carts?email=${user?.email}`).then(res => {
+    setCart(res.data);
+  });
+  const [isOpen, setOpen] = useState(false);
+
   const handleLogOut = () => {
     LogOutUser()
-      .then(() => {})
+      .then(() => {
+        setCart([]);
+      })
       .catch(error => console.log(error));
   };
   const handleMenuItemClick = () => {
@@ -71,15 +80,20 @@ const Menu = () => {
           <ul className="md:flex hidden  items-center gap-x-3 lg:gap-x-5  font-medium">
             {menuItem}
           </ul>
-          <NavLink to="/cart">
+          <NavLink to="/cart" className="relative">
             <BsCartFill className="text-2xl"></BsCartFill>
+            {user && (
+              <p className="bg-white text-black rounded-full w-4 h-4 text-xs text-center font-semibold absolute -right-2 -top-2">
+                {cart.length}
+              </p>
+            )}
           </NavLink>
 
           {user ? (
             <>
               <button
                 onClick={handleLogOut}
-                className="md:text-xl font-medium hover:text-red-400"
+                className=" font-medium hover:text-red-400"
               >
                 Log Out
               </button>
@@ -89,7 +103,7 @@ const Menu = () => {
             <>
               <NavLink to={'/login'}>
                 {' '}
-                <button className="md:text-xl font-medium">Sign In</button>
+                <button className=" font-medium">Sign In</button>
               </NavLink>
             </>
           )}
