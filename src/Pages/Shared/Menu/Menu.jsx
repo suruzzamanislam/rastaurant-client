@@ -36,11 +36,6 @@ const Menu = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink onClick={handleMenuItemClick} to="/dasboard">
-          DASBOARD
-        </NavLink>
-      </li>
-      <li>
         <NavLink onClick={handleMenuItemClick} to="/ourmenu">
           OUR MENU
         </NavLink>
