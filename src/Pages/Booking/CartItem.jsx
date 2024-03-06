@@ -3,6 +3,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 
 const CartItem = ({ item }) => {
   const { image, name, price } = item;
+
   return (
     <div className="flex justify-between items-center bg-base-300 p-4">
       <div className="w-40">

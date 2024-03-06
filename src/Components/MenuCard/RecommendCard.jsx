@@ -12,7 +12,7 @@ const RecommendCard = ({ menu }) => {
   const location = useLocation();
   const axiousSecure = useAxiousSecure();
 
-  const handleAddToCart = item => {
+  const handleAddToCart = () => {
     if (user) {
       const cartItem = {
         menuId: _id,

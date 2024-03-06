@@ -12,6 +12,7 @@ const useCart = () => {
       setCart(res.data);
     });
   }, [user]);
+  console.log(cart);
   return [cart, setCart];
 };
 

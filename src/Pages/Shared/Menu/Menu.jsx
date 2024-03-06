@@ -11,7 +11,6 @@ const Menu = () => {
   const { user, LogOutUser } = useContext(authContext);
   const [cart, setCart] = useCart();
   const [isOpen, setOpen] = useState(false);
-  console.log(cart.length);
 
   const handleLogOut = () => {
     LogOutUser()
